@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast — GTA-style Cover Studio</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <header>
+      <h1>Neon Coast</h1>
+      <p class="tag">Turn any photo into a GTA-poster-style cover. Photos never leave this machine.</p>
+    </header>
+
+    <section class="group">
+      <h2>Photos</h2>
+      <label class="file">Upload photos
+        <input id="upload" type="file" accept="image/*" multiple>
+      </label>
+      <div class="row">
+        <button id="samplePier" type="button" class="mini">Pier sample</button>
+        <button id="sampleBoulevard" type="button" class="mini">Boulevard sample</button>
+      </div>
+      <p class="note">Click a panel on the cover to select it, then drag it to pan.</p>
+    </section>
+
+    <section class="group">
+      <h2>Layout</h2>
+      <div id="layouts" class="picks"></div>
+    </section>
+
+    <section class="group">
+      <h2>Grade</h2>
+      <div id="grades" class="picks"></div>
+    </section>
+
+    <section class="group">
+      <h2>Selected panel</h2>
+      <div id="panels" class="chips"></div>
+      <label>Photo in panel
+        <select id="photoPick"></select>
+      </label>
+      <label>Zoom <span id="zoomVal">115%</span>
+        <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1.15">
+      </label>
+      <label>Pan left–right <span id="panXVal">0</span>
+        <input id="panX" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <label>Pan up–down <span id="panYVal">0</span>
+        <input id="panY" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Lettering</h2>
+      <label>Title
+        <input id="title" type="text" maxlength="24" value="NEON SHORE">
+      </label>
+      <label>Subtitle (neon script)
+        <input id="subtitle" type="text" maxlength="40" value="Sunset Heist">
+      </label>
+      <label>Badge ribbon
+        <input id="badge" type="text" maxlength="16" value="VICE CITY">
+      </label>
+      <label>Title fill
+        <select id="titleStyle">
+          <option value="gradient">Sunset gradient</option>
+          <option value="solid">Solid white</option>
+          <option value="outline">Neon outline</option>
+        </select>
+      </label>
+      <label>Stars
+        <select id="stars">
+          <option value="5">★★★★★</option>
+          <option value="4">★★★★☆</option>
+          <option value="3">★★★☆☆</option>
+        </select>
+      </label>
+      <div class="row">
+        <label class="check"><input id="grain" type="checkbox" checked> Grain</label>
+        <label class="check"><input id="vignette" type="checkbox" checked> Vignette</label>
+        <label class="check"><input id="frame" type="checkbox" checked> Frame</label>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>Post size</h2>
+      <div id="sizes" class="picks"></div>
+    </section>
+
+    <div class="actions">
+      <button id="exportAll" type="button" class="primary">Export all 3 sizes</button>
+      <button id="exportOne" type="button">Export this size</button>
+      <div class="row">
+        <button id="undo" type="button" class="mini" disabled>Undo</button>
+        <button id="redo" type="button" class="mini" disabled>Redo</button>
+      </div>
+      <p id="status" role="status"></p>
+    </div>
+  </section>
+
+  <section class="stage" aria-label="Cover preview">
+    <p id="previewSize" class="preview-size"></p>
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+    <p class="note">Tip: drag a panel to reposition its photo. Export writes three PNGs at once — 1080×1080, 1080×1350 and 1920×1080.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
